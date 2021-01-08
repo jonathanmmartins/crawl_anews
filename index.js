@@ -8,10 +8,15 @@ app.use(express.static(path.join(__dirname, './XML/')));
 
 app.listen(8080);
 
-app.get('/teste', (res) => {
-  /*res.contentType('application/rss+xml');
-    res.sendFile('/teste.xml');*/
-    searchXML.esportes();
-    res.sendStatus(200);  
+app.get('/esporte', async (req, res) => {
+    await searchXML.esportes();
+    res.contentType('application/rss+xml; charset=UTF-8');
+    res.sendFile(__dirname+'/XML/esporte.xml');
+});
+
+app.get('/jornal', async (req, res) => {
+    await searchXML.jornal();
+    res.contentType('application/rss+xml; charset=UTF-8');
+    res.sendFile(__dirname+'/XML/jornal.xml');
 });
 
