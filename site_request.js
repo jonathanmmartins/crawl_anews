@@ -1,7 +1,8 @@
 
  module.exports = {
   esportes,
-  jornal,
+  app,
+  noticias,
 };
 
 const { Headers } = require('cross-fetch');
@@ -59,11 +60,23 @@ async function esportes(){
   }
 }
 
-async function jornal(){
+async function app(){
     let data = await getXML("https://appnewsdelivery.tk/static/pt_br_rss.xml");
 
     if(data!='error'){
-    await fs.writeFileSync('./XML/jornal.xml', data,{encoding:'utf8'}, function (
+    await fs.writeFileSync('./XML/app.xml', data,{encoding:'utf8'}, function (
+    err
+  ) {
+    if (err) return console.log(err);
+  });
+  }
+}
+
+async function noticias(){
+    let data = await getXML("https://jovempan.com.br/noticias/feed");
+
+    if(data!='error'){
+    await fs.writeFileSync('./XML/noticias.xml', data,{encoding:'utf8'}, function (
     err
   ) {
     if (err) return console.log(err);

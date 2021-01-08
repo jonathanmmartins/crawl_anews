@@ -14,9 +14,15 @@ app.get('/esporte', async (req, res) => {
     res.sendFile(__dirname+'/XML/esporte.xml');
 });
 
-app.get('/jornal', async (req, res) => {
-    await searchXML.jornal();
+app.get('/app', async (req, res) => {
+    await searchXML.app();
     res.contentType('application/rss+xml; charset=UTF-8');
-    res.sendFile(__dirname+'/XML/jornal.xml');
+    res.sendFile(__dirname+'/XML/app.xml');
+});
+
+app.get('/noticias', async (req, res) => {
+    await searchXML.noticias();
+    res.contentType('application/rss+xml; charset=UTF-8');
+    res.sendFile(__dirname+'/XML/noticias.xml');
 });
 
